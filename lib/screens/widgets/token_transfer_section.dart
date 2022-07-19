@@ -17,7 +17,7 @@ class TokenTransferSection extends ConsumerWidget {
         children: [
           const SizedBox(height: 20),
           const Text(
-            'Send 5 TRC to',
+            'Send 5 NYX to',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,

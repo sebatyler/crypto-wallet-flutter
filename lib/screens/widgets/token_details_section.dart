@@ -55,7 +55,7 @@ class TokenDetailsSection extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'TRC ${tokenBalance.toDecimal()}',
+                              'NYX ${tokenBalance.toDecimal()}',
                               style: const TextStyle(
                                 fontSize: 24.0,
                                 fontWeight: FontWeight.w600,
@@ -88,9 +88,9 @@ class TokenDetailsSection extends StatelessWidget {
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  const Expanded(
+                                  Expanded(
                                     child: Text(
-                                      contractAddress,
+                                      getContractAddress(),
                                       style: TextStyle(
                                         fontSize: 12.0,
                                         color: Colors.grey,
@@ -101,7 +101,7 @@ class TokenDetailsSection extends StatelessWidget {
                                   const SizedBox(width: 8),
                                   InkWell(
                                     onTap: () => FlutterClipboard.copy(
-                                      contractAddress,
+                                      getContractAddress(),
                                     ),
                                     child: const Icon(
                                       Icons.copy,

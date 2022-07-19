@@ -8,7 +8,8 @@ import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 
-const String contractAddress = '0x6F6621EA05E7c2C5af925fc9Df015584E220aE2a';
+// Nyx
+String getContractAddress() => dotenv.env['CONTRACT_ADDR']!;
 
 final walletProvider = ChangeNotifierProvider((ref) => WalletProvider());
 
@@ -95,22 +96,25 @@ class WalletProvider extends ChangeNotifier {
   Future<void> _initialiseClient() async {
     // Initialse Web3 client
     _web3client = Web3Client(
-      dotenv.env['ALCHEMY_RINKEBY_URL']!,
+      dotenv.env['RINKEBY_URL']!,
       http.Client(),
     );
   }
 
   Future<void> _initialiseCredentials() async {
     // Initialise Credentials
-    _credentials = EthPrivateKey.fromHex(dotenv.env['RINKEBY_PRIVATE_KEY']!);
+    _credentials = EthPrivateKey.fromHex(dotenv.env['PRIVATE_KEY']!);
     await _updatePublicAddress();
   }
 
   Future<void> _initialiseContract() async {
     // Initialise Deployed Contract
     final abiString = await rootBundle.loadString('assets/abi/abi.json');
-    final ContractAbi abi = ContractAbi.fromJson(abiString, 'TreeCoin');
-    _contract = DeployedContract(abi, EthereumAddress.fromHex(contractAddress));
+    final ContractAbi abi = ContractAbi.fromJson(abiString, 'NyxCoin');
+    _contract = DeployedContract(
+      abi,
+      EthereumAddress.fromHex(getContractAddress()),
+    );
   }
 
   Future<void> _updatePublicAddress() async {
