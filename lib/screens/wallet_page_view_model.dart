@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_crypto_wallet/providers/base_view_model.dart';
 import 'package:my_crypto_wallet/providers/wallet_provider.dart';
@@ -34,7 +35,7 @@ class WalletPageViewModel extends BaseViewModel<WalletPageView> {
       loading = false;
 
       print(txBlockHash);
-      String url = "https://rinkeby.etherscan.io/tx/$txBlockHash";
+      String url = "${dotenv.env['ETHERSCAN_URL']}/tx/$txBlockHash";
       String message =
           "Tx block hash: $txBlockHash\nIt might take a while for transaction to complete. You can track the progress on Etherscan.";
 

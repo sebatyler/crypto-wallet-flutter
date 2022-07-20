@@ -71,7 +71,7 @@ class WalletProvider extends ChangeNotifier {
         function: _sendFunction(),
         parameters: [toAddress, amount],
       ),
-      chainId: 4,
+      chainId: int.parse(dotenv.env['CHAIN_ID']!),
     );
     return txBlockHash;
   }
@@ -96,7 +96,7 @@ class WalletProvider extends ChangeNotifier {
   Future<void> _initialiseClient() async {
     // Initialse Web3 client
     _web3client = Web3Client(
-      dotenv.env['RINKEBY_URL']!,
+      dotenv.env['POLYGON_MUMBAI_URL']!,
       http.Client(),
     );
   }
